@@ -17,13 +17,13 @@ Answer the question based only on the following context:
 Answer the question based on the above context: {question}
 """
 
-def main():
-    # Create CLI.
-    parser = argparse.ArgumentParser()
-    parser.add_argument("query_text", type=str, help="The query text.")
-    args = parser.parse_args()
-    query_text = args.query_text
-    query_rag(query_text)
+# def main():
+#     # Create CLI.
+#     parser = argparse.ArgumentParser()
+#     parser.add_argument("query_text", type=str, help="The query text.")
+#     args = parser.parse_args()
+#     query_text = args.query_text
+#     query_rag(query_text)
 
 
 def query_rag(query_text: str, model: str):
@@ -45,10 +45,17 @@ def query_rag(query_text: str, model: str):
     response_text = model.invoke(prompt)
 
     sources = [doc.metadata.get("id", None) for doc, _score in results]
-    formatted_response = f"Response: {response_text}\nSources: {sources}"
-    print(formatted_response)
-    return formatted_response
+    formatted_sources = []
+    formatted_response = f"Response: {response_text}\n"
+    for source in sources:
+        parts = source.split(':')
+        file_path = parts[0]
+        page_number = parts[1]
+        chunk_number = parts[2]
+        file_name = file_path.rsplit('\\', 1)[1].rsplit('.', 1)[0]
+        formatted_sources.append(f"\nPdf Page: {page_number} Chunk Number: {chunk_number} Source: {file_name}")
+    return (formatted_response, formatted_sources)
 
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()

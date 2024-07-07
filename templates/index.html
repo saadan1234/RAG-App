@@ -3,11 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Query RAG</title>
-    <link rel="stylesheet" href="templates\styles.css">
+    <title>Rag App</title>
+    <style>
+        /* styles.css */
+
+body {
+    background-color: #333; /* Dark grey background */
+    color: #f0f0f0; /* Light grey text color */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: #fff; /* White heading */
+    text-align: center;
+    padding: 20px 0;
+}
+
+form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #444; /* Slightly lighter grey */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #fff;
+}
+
+input[type="text"] {
+    display: block;
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    background-color: #555; /* Input field background */
+    color: #fff;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #777; /* Button background */
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #999; /* Button hover effect */
+}
+
+.responses {
+    max-width: 700px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #444; /* Response section background */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.response-section {
+    margin-bottom: 20px;
+}
+
+.response-section h2 {
+    color: #fff;
+}
+
+.response-section p {
+    background-color: #555; /* Paragraph background */
+    padding: 15px;
+    border-radius: 4px;
+}
+
+    </style>
+    
 </head>
 <body>
-    <h1>Query RAG</h1>
+    <h1>Deep Learning Query App</h1>
     <form method="POST" action="/">
         <label for="query_text">Enter your query:</label>
         <input type="text" id="query_text" name="query_text" required>
@@ -16,15 +99,23 @@
 
     <div class="responses">
         <div class="response-section">
-            <h2>Response from gemma2</h2>
+            <h2>Response from gemma2: </h2>
             {% if gemma2_response %}
                 <p>{{ gemma2_response }}</p>
+            {% endif %}
+            <h2>Source :</h2>
+            {% if gemma2_source %}
+                <p>{{ gemma2_source }}</p>
             {% endif %}
         </div>
         <div class="response-section">
             <h2>Response from llama3 :</h2>
             {% if llama3_response %}
                 <p>{{ llama3_response }}</p>
+            {% endif %}
+            <h2>Source :</h2>
+            {% if llama3_source %}
+                <p>{{ llama3_source }}</p>
             {% endif %}
         </div>
     </div>

@@ -27,7 +27,6 @@ def main():
     chunks = split_documents(documents)
     add_to_chroma(chunks)
 
-
 def load_documents():
     document_loader = PyPDFDirectoryLoader(DATA_PATH)
     return document_loader.load()
