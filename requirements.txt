@@ -1,0 +1,4 @@
+flask # To run the frontend page
+pypdf # PDF content conversion into chunks
+langchain # helping functions
+chromadb # Vector storage

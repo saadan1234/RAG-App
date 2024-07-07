@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Query RAG</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Query RAG</h1>
+    <form method="POST" action="/">
+        <label for="query_text">Enter your query:</label>
+        <input type="text" id="query_text" name="query_text" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    <div class="responses">
+        <div class="response-section">
+            <h2>Response from gemma2</h2>
+            {% if gemma2_response %}
+                <p>{{ gemma2_response }}</p>
+            {% endif %}
+        </div>
+        <div class="response-section">
+            <h2>Response from llama3 :</h2>
+            {% if llama3_response %}
+                <p>{{ llama3_response }}</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
