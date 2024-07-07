@@ -14,4 +14,4 @@ def index():
     return render_template("index.html", gemma2_response=gemma2_response, llama3_response=llama3_response)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=5500)

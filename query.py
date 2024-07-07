@@ -26,7 +26,7 @@ def main():
     query_rag(query_text)
 
 
-def query_rag(query_text: str, model):
+def query_rag(query_text: str, model: str):
     # Prepare the DB.
     embedding_function = get_embedding_function()
     db = Chroma(persist_directory=CHROMA_PATH, embedding_function=embedding_function)
@@ -38,8 +38,10 @@ def query_rag(query_text: str, model):
     prompt_template = ChatPromptTemplate.from_template(PROMPT_TEMPLATE)
     prompt = prompt_template.format(context=context_text, question=query_text)
     # print(prompt)
-
-    model = Ollama(model)
+    if model == "gemma2":
+        model = Ollama(model="gemma2")  
+    else:
+        model = Ollama(model="llama3")
     response_text = model.invoke(prompt)
 
     sources = [doc.metadata.get("id", None) for doc, _score in results]
