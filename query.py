@@ -53,7 +53,7 @@ def query_rag(query_text: str, model: str):
         page_number = parts[1]
         chunk_number = parts[2]
         file_name = file_path.rsplit('\\', 1)[1].rsplit('.', 1)[0]
-        formatted_sources.append(f"\nPdf Page: {page_number} Chunk Number: {chunk_number} Source: {file_name}")
+        formatted_sources.append(f"Pdf Page: {page_number} Chunk Number: {chunk_number} Source: {file_name}\n")
     return (formatted_response, formatted_sources)
 
 
